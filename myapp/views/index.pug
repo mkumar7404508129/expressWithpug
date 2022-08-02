@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div 
+    div 
+      h1 USER LOGIN
+    form(action="/" method="POST")
+      div
+        input(type="email" name="Email" required=true placeholder="Email" id="Email")
+      div 
+        input(type="password" name="password" required=true placeholder="Password" id="password")
+      div 
+        input(type="submit" value="Submit" onclick="submitButtonClick()") 
+  if failed
+        p(style="color:red")= failed 
+
+  
+  
+

@@ -1,0 +1,71 @@
+extends layout
+
+block content
+  div(id="infoPage" class="common") 
+   
+    form(action="/users/logout" method="POST")
+      button(onclick="addUser()") 
+        b ADD USER
+      input(type="submit" name="Logout" value="Logout")
+    div 
+      table(border="1")
+        tr
+          th Username 
+          th Email
+          th(colspan='3') Actions
+        if data 
+          for x in data
+            tr(id="row"+x["Id"])
+              td=x["Name"]
+              td=x["Email"]
+              td 
+                button(onclick="editButton('row"+x["Id"]+"')") Edit 
+              td 
+                button(onclick="deleteButton('row"+x["Id"]+"')") Delete 
+              td  
+                button(onclick="viewButton('row"+x["Id"]+"')") View
+
+  div(id="edit" class="common")
+    h1 Management Page
+    form(action="/users/edit",method="POST")
+      div 
+        input(type="text" name="Name" placeholder="Edit Name" required=true id='ename')
+      div
+        input(type="email" readonly=true name="Email" required=true placeholder="Email" id="edmail")
+      div 
+        input(type="password" name="Password" required=true placeholder="Password" id="epassword")
+      div 
+        input(type="password" name="cPassword" onfocusout="matchPass('epassword','ecpassword','esubmit')" placeholder="Confirm Password" required=true id="ecpassword" )                
+      div 
+        input(type="submit" value="Edit Details" onclick()  id="esubmit") 
+        button(type="button" onclick="backButton()") Back 
+    
+  div(id="adduser" class="common")
+    h1 Management Page
+    h3 Add user Deatails
+    form(action="/users/adduser" method='POST')
+      div
+        input(type="text" name="Name" required=true placeholder="Enter Name" id="name")
+      div
+        input(type="email" name="Email" required=true placeholder="Enter Email" id="email")
+      div 
+        input(type="password" name="Password" required=true placeholder="Password" id="apassword")
+      div
+        input(type="password" name="cPassword" onfocusout="matchPass('apassword','acpassword','asubmit')" required=true placeholder="Confirm Password" id="acpassword")        
+      div 
+        input(type="submit" value="Add User" id='asubmit') 
+        button(onclick="backButton()") Back
+  if pmatch
+    script. 
+      window.onload=()=>{
+              infoPage = document.getElementById("infoPage")
+              editPage = document.getElementById("edit")
+              addUserPage = document.getElementById("adduser")
+              editPage.style.display = "none"
+              addUserPage.style.display = "block"
+              infoPage.style.display="none"
+      } 
+    p(style="color:red") Something went wrong try again 
+
+
+
