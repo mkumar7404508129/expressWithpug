@@ -3,6 +3,7 @@ I made this project a solution of given assignment pdf
 ## User guide
 To start this application use command in myapp directory
 ``` 
+    npm install // for installing dependency
     npm run start
 ```
 For test login in data base there are two email 
@@ -13,4 +14,5 @@ For test login in data base there are two email
     password:-1234
 ```
 I use sqllite3 db for easy to transfer.
+# Thanks 
 
